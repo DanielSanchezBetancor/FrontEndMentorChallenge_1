@@ -1,0 +1,122 @@
+/* Header */
+.header {
+    padding: 1.5rem 1rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/* Mobile side navbar hidden by default */
+.xs_sidenavbar {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: #fff;
+    /* Just to see the border bottom */
+    height: calc(100vh - 1px);
+    box-shadow: -100vw 0px 0px 100vh rgb(0 0 0 / 70%);
+}
+/* Active state */
+.active {
+    display: grid;
+    grid-auto-rows: min-content;
+}
+/* Space between items and making a valid container for absolute position of the arrow */
+.header__main__navbar li {
+    padding: 0.9rem 1rem;
+    position: relative;
+}
+.icon_close_menu {
+    margin: 1.25rem 1rem;
+    justify-self: flex-end;
+}
+
+/* Icon showing next to the items that have sublists */
+.dropdown:before {
+    content: "";
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    width: 5px;
+    height: 5px;
+    position: absolute;
+    margin: 3px 5rem;
+    rotate: -45deg;
+    transition: rotate 0.2s ease;
+}
+.dropdown:hover:before {
+    border-left: 2px solid black;
+    border-bottom: 2px solid black;
+}
+/* Inverted icon for items with sublists opened */
+.inverted:before {
+    rotate: 135deg;
+}
+
+/* Submenus hidden by default and with a little bit more padding that normal menus */
+.submenu {
+    display: none;
+}
+/* Active state */
+.submenu_open {
+    padding: 1.5rem 1rem 0 1rem;
+}
+/* Override space between items and aligning every image + span */
+.submenu_open li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 0.5rem;
+    font-weight: var(--fw-light);
+}
+.header__main__navbar li:hover,
+.header__main__navbar li:focus-within,
+.header__buttons button:hover {
+    color: var(--color-dark);
+    font-weight: var(--fw-bold);
+}
+/* Sidebar buttons align as column */
+.header__buttons {
+    display: flex;
+    flex-direction: column;
+}
+@media (min-width: 1440px) {
+    .header {
+        padding: 2rem 3rem;
+    }
+    .icon_close_menu,
+    .header__menu {
+        display: none;
+    }
+    .xs_sidenavbar {
+        display: flex;
+        position: unset;
+        box-shadow: none;
+        height: auto;
+        align-items: center;
+        justify-content: space-between;
+        width: 90%;
+        background-color: transparent;
+    }
+    .header__main__navbar {
+        display: flex;
+        gap: 2rem;
+    }
+    .header__buttons {
+        flex-direction: row;
+    }
+    /* This dropdowns have different styles, so we will treat them as individuals */
+    .dropdown ul {
+        position: absolute;    
+        background-color: #fff;
+        box-shadow: 0 0 16px 0 rgb(0 0 0 / 50%);
+        border-radius: 1rem;
+        top: 3rem;
+        left: -7rem;
+        width: max-content;
+        padding: 1rem 1.5rem;
+        z-index: 999;
+    }
+    .company_modal {
+        left: 0 !important;
+    }
+}
